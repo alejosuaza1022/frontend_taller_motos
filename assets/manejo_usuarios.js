@@ -6,10 +6,12 @@ import {
     BIconPersonPlus,
     BIconTrash,
     BIconPersonLinesFill,
-    BIconPencilSquare
+    BIconPencilSquare,
+    BIconClipboardData
 } from "bootstrap-vue";
 const axios = require("axios")
 const config = require("./config")
+const moment = require('moment');
 export default {
     layout: "usuario",
     components: {
@@ -19,7 +21,8 @@ export default {
         BIconPersonPlus,
         BIconTrash,
         BIconPersonLinesFill,
-        BIconPencilSquare
+        BIconPencilSquare,
+        BIconClipboardData
     },
     beforeMount() {
         axios.get(config.url_api + "/usuario").then(res => {
@@ -38,6 +41,7 @@ export default {
     },
     data() {
         return {
+            valor_tot: false,
             options: [{
                     value: null,
                     text: "Seleccione tipo de documento"
@@ -57,6 +61,8 @@ export default {
                     text: "pasaporte"
                 }
             ],
+            fechaini: null,
+            fechafin: null,
             roles: [{
                     value: null,
                     text: "Seleccione el rol"
@@ -95,7 +101,9 @@ export default {
                     key: "acciones",
                     class: "center"
                 }
-            ]
+            ],
+            id_usuario: null,
+            lista_id: []
         };
     },
     methods: {
@@ -126,6 +134,14 @@ export default {
             })
 
         },
+        abrir_modal({ item }) {
+            this.lista_tabla.forEach(x => {
+                var o = Object.assign({}, x)
+                this.lista_id.push({ text: o.documento, value: o.documento })
+            })
+
+            this.$bvModal.show('modal-1')
+        },
         limpiar_campos() {
             this.usuario = {
                 documento: "",
@@ -135,8 +151,25 @@ export default {
                 celular: "",
                 correo: "",
                 rol: null,
-                clave: ""
+                clave: "",
+
             }
+        },
+        cancel() {
+            this.crear = true
+            this.limpiar_campos()
+
+        },
+        calcular_pago() {
+            let fechai = moment(this.fechaini).format("MM/DD/YYYY")
+            let fechaf = moment(this.fechafin).format("MM/DD/YYYY")
+            let aux = { fechaini: fechai, fechafin: fechaf }
+            axios.post(config.url_api + "/usuario/horas-laboradas/" + this.id_usuario, aux).then(res => {
+                console.log(res)
+            }).catch(err => {
+                console.log(err);
+
+            })
         },
         mostrar_tabla() {
             console.log(this.lista_tabla)

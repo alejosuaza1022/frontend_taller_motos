@@ -5,27 +5,40 @@
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
         <b-collapse is-nav id="nav_collapse">
-          <div >
+          <div style="font-size: 2rem;">
+            <b-icon icon="person-square" variant="light" scale="2.25" class="rounded p-2 "></b-icon>
+          </div>
+      
+          <div class="center1">
             <b-navbar-nav>
-              <b-nav-item :to="{ name: 'usuario_principal' }" class="margin1"
-                ><b><i>Principal</i></b></b-nav-item
+              <b-nav-item :to="{ name: 'usuario_principal' }" class="margin1 ">
+                <b><i>Principal</i></b></b-nav-item
               >
-              <b-nav-item :to="{ name: 'manejo_usuarios' }" class="margin1" v-if="bool"
+              <b-nav-item
+                :to="{ name: 'manejo_usuarios' }"
+                class="margin1"
+                v-if="bool"
                 ><b><i>Manejo usuarios</i></b></b-nav-item
               >
               <b-nav-item :to="{ name: 'manejo_motos' }" class="margin1"
                 ><b><i>Manejo motos</i></b></b-nav-item
               >
-              <b-nav-item :to="{ name: 'mantenimientos' }" class="margin1" v-if="bool"
+              <b-nav-item
+                :to="{ name: 'mantenimientos' }"
+                class="margin1"
+                v-if="bool"
                 ><b><i>Mantenimientos</i></b></b-nav-item
               >
-              <b-nav-item :to="{ name: 'mantenimientos_mecanico' }" class="margin1" v-if="!bool"
+              <b-nav-item
+                :to="{ name: 'mantenimientos_mecanico' }"
+                class="margin1"
+                v-if="!bool"
                 ><b><i>Mantenimientos</i></b></b-nav-item
               >
             </b-navbar-nav>
           </div>
           <b-button @click="log_out" variant="outline-light" class="mb-2 mgl">
-            <b-icon icon="power" aria-hidden="true"></b-icon> Logout
+            <b-icon icon="power" animation="throb" scale="1.5"  aria-hidden="true"></b-icon> Logout
           </b-button>
         </b-collapse>
       </b-navbar>
@@ -36,11 +49,18 @@
 </template>
 
 <script>
-import { BIcon, BIconPower } from "bootstrap-vue";
+import {
+  BIcon,
+  BIconPower,
+  BIconHouseFill,
+  BIconPersonSquare
+} from "bootstrap-vue";
 export default {
   components: {
     BIcon,
-    BIconPower
+    BIconPower,
+    BIconHouseFill,
+    BIconPersonSquare
   },
   beforeMount() {
     let aux = JSON.parse(localStorage.getItem("Usuario")).rol;
@@ -53,10 +73,9 @@ export default {
     };
   },
   methods: {
-    log_out(){
-      this.$router.push("/")
+    log_out() {
+      this.$router.push("/");
     }
-
   }
 };
 </script>
@@ -65,12 +84,11 @@ export default {
 .dropdown-item:active {
   background: #dc3546;
 }
-.mgl{
+.mgl {
   margin-left: auto;
-
 }
 .center1 {
-  margin: auto;
+  margin-left: 27%;
 }
 html {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -141,8 +159,14 @@ body {
 .margin2 {
   margin-top: 20px;
 }
-.margin1{
-   margin-right: 20px;
+.margin1 {
+  margin-right: 20px;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0
 }
 </style>
 <!-- <div>

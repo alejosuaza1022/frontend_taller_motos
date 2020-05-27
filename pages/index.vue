@@ -1,15 +1,17 @@
 <template>
   <div class="content">
+     <transition appear name="fade"> 
+
     <b-container class="container">
-      <h1 class="title1">Gestión de evaluación</h1>
+      <h1 class="title1">Gestión de taller</h1>
       <h2 class="subtitle text-center">
-        Plataforma para todo lo referente a la evaluación de nuevas propuestas
-        de publicación
+        Plataforma que permite tener control sobre el taller de motos en Medellín 
       </h2>
       <b-button @click="login" variant="outline-primary">
-        <b-icon icon="person-fill"></b-icon> Log in
+        <b-icon icon="person-fill" animation="throb "></b-icon> Log in
       </b-button>
     </b-container>
+     </transition>
   </div>
 </template>
 

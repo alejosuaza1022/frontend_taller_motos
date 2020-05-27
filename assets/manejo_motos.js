@@ -49,6 +49,10 @@ export default {
                 }, {
                     value: 'mantenimiento',
                     text: "En mantenimiento"
+                },
+                {
+                    value: 'arreglada',
+                    text: "Moto lista para salir del taller"
                 }
             ],
 
@@ -123,8 +127,13 @@ export default {
             })
 
         },
+        cancel() {
+            this.crear = true
+            this.limpiar_campos()
+
+        },
         limpiar_campos() {
-            moto = {
+            this.moto = {
                 placa: "",
                 estado: null,
                 clase: "",
@@ -162,9 +171,7 @@ export default {
             axios.delete(config.url_api + "/moto/" + item.documento).then(res => {
                 this.crear = true;
                 let pos = this.lista_tabla.indexOf(item)
-
                 this.lista_tabla.splice(pos, 1)
-
                 this.limpiar_campos()
             }).catch(err => {
                 console.log(err)

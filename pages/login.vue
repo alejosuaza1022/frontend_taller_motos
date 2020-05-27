@@ -13,6 +13,8 @@
         {{ message }}
       </h4>
     </b-modal>
+     <transition appear name="fade"> 
+
     <b-container>
      
       <b-card class="bcard mgrlog ">
@@ -25,7 +27,7 @@
           >
           <b-input-group class="mb-2" >
             <b-input-group-prepend is-text>
-                <b-icon icon="person-fill" ></b-icon>
+                <b-icon icon="person-fill" size="lg" variant="primary" scale="2" ></b-icon>
               </b-input-group-prepend>
             <b-form-input
               id="input-1"
@@ -62,6 +64,7 @@
         </b-form>
       </b-card>
     </b-container>
+     </transition>
   </div>
 </template>
 
