@@ -121,7 +121,7 @@
 
         <div>
           <transition name="fade" mode="out-in">
-            <b-container v-if="!tabla">
+            <b-container fluid v-if="!tabla">
               <b-card class="bcard1" v-if="!tabla">
                 <b-table
                   class="border border-dark text-center"

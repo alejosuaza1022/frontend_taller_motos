@@ -27,6 +27,7 @@ export default {
     beforeMount() {
         let documento = JSON.parse(localStorage.getItem("Usuario")).documento
         axios.get(config.url_api + "/mantenimientos/" + documento).then(res => {
+
             res.data.data.forEach(x => {
                 let o = {}
                 o.fecha = x.fecha.slice(0, 10)
@@ -34,6 +35,8 @@ export default {
                 o.text = `Placa moto: ${x.placa} -- Fecha asignación: ${o.fecha}`
                 this.drop.push(o)
             })
+
+
 
         }).catch(err => {
             console.log(err);
@@ -113,9 +116,10 @@ export default {
             this.cancelar()
             let user = JSON.parse(localStorage.getItem("Usuario"))
             if (user) {
-                let fecha = moment(this.selected.fecha).format("MM/DD/YYYY")
+                let fecha = moment(this.selected.fecha.slice(0, 10)).format("MM/DD/YYYY")
                 let placa = this.selected.placa
                 let val = this.value.toString()
+
                 let documento = JSON.parse(localStorage.getItem("Usuario")).documento
                 axios.put(config.url_api + "/usuario/registar-mantenimiento/" + documento + "/" + placa, {
                     fecha,
