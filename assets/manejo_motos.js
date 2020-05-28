@@ -6,7 +6,8 @@ import {
     BIconPersonPlus,
     BIconTrash,
     BIconPersonLinesFill,
-    BIconPencilSquare
+    BIconPencilSquare,
+    BIconPlus
 } from "bootstrap-vue";
 const axios = require("axios")
 const config = require("./config")
@@ -20,7 +21,8 @@ export default {
         BIconPersonPlus,
         BIconTrash,
         BIconPersonLinesFill,
-        BIconPencilSquare
+        BIconPencilSquare,
+        BIconPlus
     },
     beforeMount() {
         var today = new Date();

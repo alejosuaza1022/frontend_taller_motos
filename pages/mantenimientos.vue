@@ -86,7 +86,7 @@
               class="submit-button"
               v-if="crear"
               >Asignar mantenimiento
-              <b-icon icon="person-plus"></b-icon>
+              <b-icon icon="plus"></b-icon>
             </b-button>
 
             <!-- <b-button

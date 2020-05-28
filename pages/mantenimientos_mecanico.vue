@@ -161,7 +161,7 @@
                   variant="primary"
                   class="submit-button"
                   >Asignar mantenimiento
-                  <b-icon icon="person-plus"></b-icon>
+                  <b-icon icon="plus"></b-icon>
                 </b-button>
               </div>
             </transition>
