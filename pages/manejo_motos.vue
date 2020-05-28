@@ -50,7 +50,7 @@
       </h4>
     </b-modal>
     <transition appear name="fade">
-      <b-container>
+      <b-container fluid>
         <b-card class="bcard ">
           <div class="container_login">
             <b-img
@@ -225,10 +225,7 @@
             </transition>
           </b-form>
         </b-card>
-      </b-container>
-    </transition>
-    <transition appear name="fade">
-      <b-container>
+ 
         <div class="btnmostrar">
           <transition name="fade" mode="out-in">
             <b-button
@@ -249,15 +246,11 @@
             </b-button>
           </transition>
         </div>
-      </b-container>
-    </transition>
-    <transition appear name="fade">
-      <b-container>
+   
         <div>
           <transition name="fade">
-            <b-container v-if="!tabla">
+            <b-container  fluid v-if="!tabla" >
               <b-card class="bcard1" v-if="!tabla" responsive>
-                <b-container class="btable">
                   <div class="overflow-auto">
                     <!--  <b-pagination
                       v-model="currentPage"
@@ -288,7 +281,6 @@
                       </template>
                     </b-table>
                   </div>
-                </b-container>
               </b-card>
             </b-container>
           </transition>

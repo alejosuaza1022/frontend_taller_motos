@@ -50,7 +50,7 @@
       </h4>
     </b-modal>
     <transition appear name="fade">
-      <b-container>
+      <b-container fluid>
         <b-card class="bcard ">
           <div class="container_login">
             <b-img

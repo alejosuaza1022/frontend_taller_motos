@@ -97,8 +97,8 @@
         </b-button>
       </template>
     </b-modal>
-    <transition appear name="fade">
-      <b-container>
+   <transition appear name="fade">
+     <b-container fluid>
         <b-card class="bcard">
           <div class="container_login">
             <b-img
@@ -249,10 +249,7 @@
         >-->
           </b-form>
         </b-card>
-      </b-container>
-    </transition>
-    <transition appear name="fade">
-      <b-container>
+  
         <div class="btnmostrar">
           <transition name="fade" mode="out-in">
             <b-button
@@ -273,13 +270,11 @@
             </b-button>
           </transition>
         </div>
-      </b-container>
-    </transition>
-    <transition appear name="fade">
-      <b-container>
+ 
+   
         <div>
-          <transition name="fade">
-            <b-container v-if="!tabla">
+          <transition  name="fade">
+      <b-container fluid v-if="!tabla">
               <b-card class="bcard1" v-if="!tabla">
                 <b-table
                   class="border border-dark text-center"
@@ -319,7 +314,8 @@
                 </b-table>
               </b-card>
             </b-container>
-          </transition>
+
+            </transition >
         </div>
       </b-container>
     </transition>

@@ -212,7 +212,7 @@ body {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
-  width: 70%;
+  width: 60%;
   margin-left: auto;
   margin-right: auto;
   align-content: stretch;
@@ -229,6 +229,7 @@ body {
   flex-wrap: nowrap;
   justify-content: center;
   margin-left: auto;
+  width: 80%;
   margin-right: auto;
   align-content: stretch;
   -webkit-box-shadow: -7px 7px 26px 0px rgba(150, 150, 150, 1);

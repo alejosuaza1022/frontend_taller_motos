@@ -48,7 +48,7 @@
       </h4>
     </b-modal>
     <transition appear name="fade">
-      <b-container>
+      <b-container fluid>
         <b-card class="bcard ">
           <div class="container_login">
             <b-img
@@ -98,10 +98,6 @@
         >-->
           </b-form>
         </b-card>
-      </b-container>
-    </transition>
-    <transition appear name="fade">
-      <b-container>
         <div class="btnmostrar">
           <transition name="fade" mode="out-in">
             <b-button
@@ -122,10 +118,7 @@
             </b-button>
           </transition>
         </div>
-      </b-container>
-    </transition>
-    <transition appear name="fade">
-      <b-container>
+
         <div>
           <transition name="fade" mode="out-in">
             <b-container v-if="!tabla">

@@ -17,7 +17,7 @@
      
     </b-modal>
     <transition appear name="fade">
-      <b-container>
+      <b-container fluid>
         <b-card class="bcard mgrlog ">
           <b-form @submit="login">
             <b-form-group

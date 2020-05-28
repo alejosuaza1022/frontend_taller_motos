@@ -1,5 +1,5 @@
 const config = {
-    url_api: "http://localhost:4000/api"
+    url_api: "https://api-taller-practica.herokuapp.com/api"
 };
 
 module.exports = config;
