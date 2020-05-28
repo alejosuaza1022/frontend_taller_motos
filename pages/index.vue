@@ -23,7 +23,9 @@ export default {
     BIconPersonCircle,
     BIconPersonFill
   },
-  beforeMount() {},
+  beforeMount() {
+    localStorage.clear()
+  },
   methods:{
     login(){
       this.$router.push("login")

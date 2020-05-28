@@ -6,12 +6,17 @@
 
         <b-collapse is-nav id="nav_collapse">
           <div style="font-size: 2rem;">
-            <b-icon icon="person-square" variant="light" scale="2.25" class="rounded p-2 "></b-icon>
+            <b-icon
+              icon="person-square"
+              variant="light"
+              scale="2.25"
+              class="rounded p-2 "
+            ></b-icon>
           </div>
-      
-          <div class="center1">
+
+          <div :class="center">
             <b-navbar-nav>
-              <b-nav-item :to="{ name: 'usuario_principal' }" class="margin1 ">
+              <b-nav-item :to="{ name: 'usuario_principal' }" class="margin1">
                 <b><i>Principal</i></b></b-nav-item
               >
               <b-nav-item
@@ -38,38 +43,93 @@
             </b-navbar-nav>
           </div>
           <b-button @click="log_out" variant="outline-light" class="mb-2 mgl">
-            <b-icon icon="power" animation="throb" scale="1.5"  aria-hidden="true"></b-icon> Logout
+            <b-icon
+              icon="power"
+              animation="throb"
+              scale="1.5"
+              aria-hidden="true"
+            ></b-icon>
+            Logout
           </b-button>
         </b-collapse>
       </b-navbar>
     </div>
 
     <nuxt />
+    <template>
+      <footer color="indigo" class="font-small pt-10">
+    
+        <div class="footer-copyright text-center py-3 botto">
+          <b-container fluid>
+            &copy; 2020 Copyright:
+            <a href="https://www.bootstrap.com"> bootstrap.com </a>
+          </b-container>
+        </div>
+      </footer>
+      <!-- Footer -->
+    </template>
   </div>
 </template>
 
 <script>
+
 import {
   BIcon,
   BIconPower,
   BIconHouseFill,
   BIconPersonSquare
 } from "bootstrap-vue";
+const axios = require("axios");
+const config = require("../assets/config");
 export default {
   components: {
     BIcon,
     BIconPower,
     BIconHouseFill,
-    BIconPersonSquare
+    BIconPersonSquare,
+  
   },
   beforeMount() {
+    let aux1 = JSON.parse(localStorage.getItem("Usuario"));
+    if (aux1) {
+      let token = aux1.token;
+      let path = this.$route.path;
+      if (path === "/mantenimientos" || path === "/manejo_usuarios") {
+        axios
+          .post(
+            config.url_api + "/usuario/verificar",
+            { modulo: "admin" },
+            { headers: { token } }
+          )
+          .then(res => console.log(res))
+          .catch(err => {
+            this.$router.push("forbidden");
+          });
+      } else {
+        console.log(token);
+
+        axios
+          .post(
+            config.url_api + "/usuario/verificar",
+            { modulo: "user" },
+            { headers: { token } }
+          )
+          .then(res => console.log(res))
+          .catch(err => {
+            this.$router.push("forbidden");
+          });
+      }
+    }
+
     let aux = JSON.parse(localStorage.getItem("Usuario")).rol;
     this.bool = aux === 2 ? true : false;
-    console.log(aux, this.bool);
+    if (!this.bool) this.center = "center2";
+    console.log("dsadasdas");
   },
   data() {
     return {
-      bool: false
+      bool: false,
+      center: "center1"
     };
   },
   methods: {
@@ -90,6 +150,10 @@ export default {
 .center1 {
   margin-left: 27%;
 }
+.center2 {
+  margin-left: 35%;
+}
+
 html {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -148,10 +212,28 @@ body {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
   align-content: stretch;
   -webkit-box-shadow: -7px 7px 26px 0px rgba(150, 150, 150, 1);
   -moz-box-shadow: -7px 7px 26px 0px rgba(150, 150, 150, 1);
-  box-shadow: -7px 7px 26px 0px rgba(150, 150, 150, 1);
+  box-shadow: -7px 7px 26px 5px rgba(150, 150, 150, 1);
+}
+.bcard1 {
+  margin-top: 15px;
+  background-color: white;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  align-content: stretch;
+  -webkit-box-shadow: -7px 7px 26px 0px rgba(150, 150, 150, 1);
+  -moz-box-shadow: -7px 7px 26px 0px rgba(150, 150, 150, 1);
+  box-shadow: -7px 7px 26px 5px rgba(150, 150, 150, 1);
 }
 .margin {
   margin-right: 20px;
@@ -162,11 +244,17 @@ body {
 .margin1 {
   margin-right: 20px;
 }
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 1s
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0
+  opacity: 0;
+}
+.botto{
+  margin-top: 100px;
+  margin-block-end: 10px;
+
 }
 </style>
 <!-- <div>

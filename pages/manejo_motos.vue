@@ -1,5 +1,54 @@
 <template>
   <div>
+    <div>
+      <b-modal
+        id="modal-2"
+        :header-bg-variant="model_header_color"
+        :body-text-variant="model_tbody_color"
+        header-text-variant="light"
+        header-class="text-center"
+        body-class="text-center"
+        title="taller dice"
+      >
+        <h4>
+          {{ message }}
+        </h4>
+        <template v-slot:modal-footer>
+          <div class="w-200">
+            <b-button
+              variant="primary"
+              size="sm"
+              class="float-right"
+              @click="aceptar"
+            >
+              Aceptar
+            </b-button>
+            <b-button
+              variant="outline-primary"
+              size="sm"
+              class="float-md-right mg"
+              @click="cancelar"
+            >
+              Cancelar
+            </b-button>
+          </div>
+        </template>
+      </b-modal>
+    </div>
+    <b-modal
+      id="modal-1"
+      :header-bg-variant="model_header_color"
+      :body-text-variant="model_tbody_color"
+      header-class="text-center"
+      body-class="text-center"
+      title="Taller dice"
+      :ok-variant="colorOk"
+      cancel-disabled
+    >
+      <h4>
+        {{ message }}
+      </h4>
+    </b-modal>
     <transition appear name="fade">
       <b-container>
         <b-card class="bcard ">
@@ -22,6 +71,7 @@
                 v-model="moto.placa"
                 placeholder="Ingrese  Placa"
                 id="Placa"
+                @input="caracteres()"
               />
             </b-form-group>
             <b-form-group label="Estado" label-for="estado" v-if="!crear">
@@ -78,7 +128,8 @@
                 type="number"
                 v-model="moto.cilindraje"
                 placeholder="Ingrese cilindraje"
-                id="cilindrahe"
+                id="cilindraje"
+                @input="caracteres1()"
               />
             </b-form-group>
 
@@ -172,14 +223,6 @@
                 >Cancelar</b-button
               >
             </transition>
-
-            <!-- <b-button
-          @click="actualizarEvaluador()"
-          variant="danger"
-          v-else
-          class="submit-button"
-          >Actualizar evaluador</b-button
-        >-->
           </b-form>
         </b-card>
       </b-container>
@@ -213,30 +256,38 @@
         <div>
           <transition name="fade">
             <b-container v-if="!tabla">
-              <b-card class="bcard" v-if="!tabla" responsive>
+              <b-card class="bcard1" v-if="!tabla" responsive>
                 <b-container class="btable">
-                  <b-table
-                    class="border border-dark text-center mb-0"
-                    responsive
-                    hover
-                    striped
-                    :fields="fields"
-                    :items="lista_tabla"
-                    head-variant="primary"
-                    v-if="!tabla"
-                  >
-                    <template v-slot:cell(acciones)="row">
-                      <div>
-                        <b-button
-                          variant="outline-primary"
-                          size="sm"
-                          @click="cargar_moto(row)"
-                          class="mr-2 acciones"
-                          ><b-icon icon="person-lines-fill"></b-icon>
-                        </b-button>
-                      </div>
-                    </template>
-                  </b-table>
+                  <div class="overflow-auto">
+                    <!--  <b-pagination
+                      v-model="currentPage"
+                      :total-rows="rows"
+                      :per-page="perPage"
+                      aria-controls="my-table1"
+                    ></b-pagination> -->
+                    <b-table
+                      sticky-header
+                      class="border border-dark text-center mb-0"
+                      responsive
+                      hover
+                      bordered
+                      :fields="fields"
+                      :items="lista_tabla"
+                      v-if="!tabla"
+                    >
+                      <template v-slot:cell(acciones)="row">
+                        <div>
+                          <b-button
+                            variant="outline-primary"
+                            size="sm"
+                            @click="cargar_moto(row)"
+                            class="mr-2 acciones"
+                            ><b-icon icon="person-lines-fill"></b-icon>
+                          </b-button>
+                        </div>
+                      </template>
+                    </b-table>
+                  </div>
                 </b-container>
               </b-card>
             </b-container>
@@ -263,5 +314,8 @@
   align-items: center;
   margin-top: 20px;
   margin-bottom: 15px;
+}
+.mg {
+  margin-right: 5px;
 }
 </style>

@@ -1,5 +1,52 @@
 <template>
   <div>
+    <b-modal
+      id="modal-2"
+      :header-bg-variant="model_header_color"
+      :body-text-variant="model_tbody_color"
+      header-text-variant="light"
+      header-class="text-center"
+      body-class="text-center"
+      title="Taller dice"
+    >
+      <h4>
+        {{ message }}
+      </h4>
+      <template v-slot:modal-footer>
+        <div class="w-200">
+          <b-button
+            variant="primary"
+            size="sm"
+            class="float-right"
+            @click="aceptar"
+          >
+            Aceptar
+          </b-button>
+          <b-button
+            variant="outline-primary"
+            size="sm"
+            class="float-md-right mg"
+            @click="cancelar"
+          >
+            Cancelar
+          </b-button>
+        </div>
+      </template>
+    </b-modal>
+    <b-modal
+      id="modal-3"
+      :header-bg-variant="model_header_color"
+      :body-text-variant="model_tbody_color"
+      header-class="text-center"
+      body-class="text-center"
+      title="Taller dice"
+      :ok-variant="colorOk"
+      cancel-disabled
+    >
+      <h4>
+        {{ message }}
+      </h4>
+    </b-modal>
     <transition appear name="fade">
       <b-container>
         <b-card class="bcard ">
@@ -53,71 +100,71 @@
         </b-card>
       </b-container>
     </transition>
-     <transition appear name="fade"> 
-    <b-container>
-      <div class="btnmostrar">
-        <transition name="fade" mode="out-in">
-          <b-button
-            @click="mostrar_tabla()"
-            variant="outline-primary"
-            v-if="tabla"
-            key="mant_tabl"
-            >Ver más
-            <b-icon icon="chevron-double-down"></b-icon>
-          </b-button>
-          <b-button
-            @click="esconder_tabla()"
-            variant="outline-primary"
-            v-else
-            key="mant_notabl"
-            >Ver menos
-            <b-icon icon="chevron-double-up"></b-icon>
-          </b-button>
-        </transition>
-      </div>
-    </b-container>
-     </transition>
-     <transition appear name="fade"> 
-     
-    <b-container>
-      <div>
-        <transition name="fade" mode="out-in">
-          <b-container v-if="!tabla">
-            <b-card class="bcard" v-if="!tabla">
-              <b-table
-                class="border border-dark text-center"
-                responsive
-                hover
-                striped
-                :items="lista_tabla"
-                head-variant="primary"
-                v-if="!tabla"
-              >
-                <template v-slot:cell(acciones)="row">
-                  <div>
-                    <!--    <b-button
+    <transition appear name="fade">
+      <b-container>
+        <div class="btnmostrar">
+          <transition name="fade" mode="out-in">
+            <b-button
+              @click="mostrar_tabla()"
+              variant="outline-primary"
+              v-if="tabla"
+              key="mant_tabl"
+              >Ver más
+              <b-icon icon="chevron-double-down"></b-icon>
+            </b-button>
+            <b-button
+              @click="esconder_tabla()"
+              variant="outline-primary"
+              v-else
+              key="mant_notabl"
+              >Ver menos
+              <b-icon icon="chevron-double-up"></b-icon>
+            </b-button>
+          </transition>
+        </div>
+      </b-container>
+    </transition>
+    <transition appear name="fade">
+      <b-container>
+        <div>
+          <transition name="fade" mode="out-in">
+            <b-container v-if="!tabla">
+              <b-card class="bcard1" v-if="!tabla">
+                <b-table
+                  class="border border-dark text-center"
+                  responsive
+                  hover
+                  :fields="campos"
+                  sticky-header
+                  :items="lista_tabla"
+                  bordered
+                  v-if="!tabla"
+                >
+                  <template v-slot:cell(acciones)="row">
+                    <div>
+                      <!--    <b-button
               variant="outline-primary"
               size="sm"
               @click="cargar_usuario(row)"
               class="mr-2 acciones"
               ><b-icon icon="person-lines-fill"></b-icon> </b-button
             >-->
-                    <b-button
-                      variant="primary"
-                      size="sm"
-                      @click="eliminar_usuario(row)"
-                      class="mr-2 acciones"
-                      ><b-icon icon="trash"></b-icon
-                    ></b-button>
-                  </div>
-                </template>
-              </b-table>
-            </b-card>
-          </b-container>
-        </transition>
-      </div>
-    </b-container>
-     </transition>
+                      <b-button
+                        variant="primary"
+                        size="sm"
+                        @click="eliminar_usuario(row)"
+                        class="mr-2 acciones"
+                        ><b-icon icon="trash"></b-icon
+                      ></b-button>
+                    </div>
+                  </template>
+                </b-table>
+              </b-card>
+            </b-container>
+          </transition>
+        </div>
+      </b-container>
+    </transition>
   </div>
 </template>
 
@@ -130,5 +177,8 @@
   align-items: center;
   margin-top: 15px;
   margin-bottom: 15px;
+}
+.mg {
+  margin-right: 5px;
 }
 </style>

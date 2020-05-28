@@ -1,5 +1,54 @@
 <template>
   <div>
+       <div>
+      <b-modal
+        id="modal-2"
+        :header-bg-variant="model_header_color"
+        :body-text-variant="model_tbody_color"
+        header-text-variant="light"
+        header-class="text-center"
+        body-class="text-center"
+        title="Taller dice"
+      >
+        <h4>
+          {{ message }}
+        </h4>
+        <template v-slot:modal-footer>
+          <div class="w-200">
+            <b-button
+              variant="primary"
+              size="sm"
+              class="float-right"
+              @click="aceptar"
+            >
+              Aceptar
+            </b-button>
+            <b-button
+              variant="outline-primary"
+              size="sm"
+              class="float-md-right mg"
+              @click="cancelar"
+            >
+              Cancelar
+            </b-button>
+          </div>
+        </template>
+      </b-modal>
+    </div>
+    <b-modal
+      id="modal-1"
+      :header-bg-variant="model_header_color"
+      :body-text-variant="model_tbody_color"
+      header-class="text-center"
+      body-class="text-center"
+      title="Taller dice"
+      :ok-variant="colorOk"
+      cancel-disabled
+    >
+      <h4>
+        {{ message }}
+      </h4>
+    </b-modal>
     <transition appear name="fade">
       <b-container>
         <b-card class="bcard ">
@@ -146,5 +195,8 @@
   border-color: #b8e0fe;
   border-width: 2px;
   box-shadow: 4px 3px 20px 4px #b8e0fe;
+}
+.mg {
+  margin-right: 5px;
 }
 </style>
